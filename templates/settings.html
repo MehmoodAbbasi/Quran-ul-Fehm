@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %}Account Settings{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4" style="color: #004d40;">Account Settings</h2>
+
+    <form method="POST" action="{% url 'update_settings' %}">
+        {% csrf_token %}
+        <div class="card shadow-lg">
+            <div class="card-header bg-primary text-white">
+                <h4>Settings</h4>
+            </div>
+            <div class="card-body">
+                <!-- Dark Mode Toggle -->
+                <div class="form-group">
+                    <label for="dark_mode" class="form-label">Dark Mode</label>
+                    {{ form.dark_mode }}
+                    <small class="form-text text-muted">Enable or disable dark theme</small>
+                </div>
+
+                <!-- Prayer Notification Toggle -->
+                <div class="form-group">
+                    <label for="prayer_notification" class="form-label">Prayer Notifications</label>
+                    {{ form.prayer_notification }}
+                    <small class="form-text text-muted">Enable prayer time notifications</small>
+                </div>
+
+                <!-- Alarm Time Slot -->
+                <div class="form-group">
+                    <label for="alarm_time_slot" class="form-label">Alarm Time</label>
+                    {{ form.alarm_time_slot }}
+                    <small class="form-text text-muted">Set the alarm time for prayer</small>
+                </div>
+
+                <!-- Timezone -->
+                <div class="form-group">
+                    <label for="timezone" class="form-label">Timezone</label>
+                    {{ form.timezone }}
+                    <small class="form-text text-muted">Select your local timezone</small>
+                </div>
+
+                <!-- Location -->
+                <div class="form-group">
+                    <label for="location" class="form-label">Location</label>
+                    {{ form.location }}
+                    <small class="form-text text-muted">Enter your location</small>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <button type="submit" class="btn btn-success">Save Settings</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Success Message -->
+    {% if messages %}
+    <div class="mt-4">
+        {% for message in messages %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+
+
+<script>
+    const darkModeToggle = document.getElementById("dark_mode");
+
+    // Apply dark mode styles based on user settings
+    if (darkModeToggle.checked) {
+        document.body.classList.add('dark-mode');
+    }
+
+    // Toggle dark mode styles on user toggle
+    darkModeToggle.addEventListener('change', () => {
+        if (darkModeToggle.checked) {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    });
+</script>
+<style>
+    body.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+}
+
+.card.dark-mode {
+    background-color: #1e1e1e;
+    color: #f1f1f1;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.custom-control-label {
+    color: #f1f1f1;
+}
+
+</style>

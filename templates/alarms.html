@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Prayer Alarms{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        {% for alarm in alarms %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 alarm-card">
+                <div class="card-body d-flex flex-column">
+                    <div class="text-right">
+                        <h2 class="card-title">{{ alarm.prayer_name }}</h2>
+                        <p class="card-text">
+                            <strong>وقت:</strong> {{ alarm.alarm_time }}<br>
+                            <strong>مقام:</strong> {{ alarm.location }}<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

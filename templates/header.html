@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Quran App{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Amiri', serif;
+        }
+        .islamic-pattern {
+            background-image: url('https://www.transparenttextures.com/patterns/arabesque.png');
+        }
+        .header {
+            background-color: #006400;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #8b0000;
+        }
+        .sidebar {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-right: 3px solid #d3d3d3;
+            height: 100%;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: #4b0082;
+            display: block;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #ddd;
+            color: #006400;
+        }
+        .main-content {
+            padding: 20px;
+            flex: 1;
+        }
+        .verse-card {
+            border: 1px solid #d3d3d3;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .verse-card h2 {
+            font-size: 1.5rem;
+            color: #4b0082;
+        }
+        .verse-card p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .footer {
+            background-color: #006400;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 5px;
+            border-top: 3px solid #8b0000;
+        }
+        .card {
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-title {
+            font-family: 'Amiri', serif;
+            color: #006400;
+        }
+        .card-text {
+            font-family: 'Amiri', serif;
+            color: #212529;
+        }
+        .bg-primary {
+            background-color: #006400 !important;
+        }
+    </style>
+</head>
+
+<div class="header">
+    <h1>Quran App</h1>
+</div>
+</html>

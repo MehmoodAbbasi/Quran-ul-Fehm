@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}احادیث{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">احادیث نبوی ﷺ</h2>
+    <div class="row">
+        {% for haddess in haddess %}
+        <div class="col-md-6 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-right">
+                    {% if haddess.title_ar %}
+                    <h4 class="card-title text-success"> : عربی عنوان </h4>
+                    <p class="card-text">{{ haddess.title_ar }}</p>
+                    {% endif %}
+                    <h4 class="card-title text-primary"> : اردو عنوان</h4>
+                    <p class="card-text">{{ haddess.title_ur }}</p>
+                    {% if haddess.description_ur %}
+                    <h4 class="card-title text-warning"> : وضاحت</h4>
+                    <p class="card-text">{{ haddess.description_ur }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

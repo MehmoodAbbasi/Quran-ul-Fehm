@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Quran Verses{% endblock %}
+
+{% block content %}
+    {% for verse in verses %}
+    <div class="verse-card">
+        <h2>Arabic Text</h2>
+        <p>{{ verse.arabic_text }}</p>
+        <h2>Urdu Translation</h2>
+        <p>{{ verse.urdu_translation }}</p>
+        <h2>English Translation</h2>
+        <p>{{ verse.english_translation }}</p>
+        {% if verse.word_by_word_translation %}
+        <h2>Word by Word Translation</h2>
+        <p>{{ verse.word_by_word_translation }}</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+{% endblock %}

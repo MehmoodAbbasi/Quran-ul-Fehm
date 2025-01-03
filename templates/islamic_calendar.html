@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}اسلامی کیلنڈر{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-5 font-weight-bold" style="color: #004d40;">اسلامی کیلنڈر {{ current_year }}</h2>
+
+    <div class="row">
+        {% for month_name, events in months.items %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card shadow-lg border-0">
+                    <div class="card-header text-center bg-success text-white py-3">
+                        <h5 class="mb-0">{{ month_name }}</h5>
+                    </div>
+                    <div class="card-body" style="background-color: #f9f9f9;">
+                        {% if events %}
+                        <ul class="list-group list-group-flush">
+                            {% for event in events %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="font-weight-bold">{{ event.day_of_month }}</span> - 
+                                        <span>{{ event.event_name }}</span>
+                                    </div>
+                                    <span class="badge badge-success badge-pill">{{ event.event_date }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        {% else %}
+                        <p class="text-muted text-center">کوئی تقریب نہیں ہے</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

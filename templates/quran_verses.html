@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}قرآنی آیات{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-5 font-weight-bold" style="color: #004d40;">قرآنی آیات</h2>
+
+    <div class="row">
+        {% for verse in verses %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100 shadow-lg border-0">
+                <div class="card-body d-flex flex-column" style="background-color: #f9f9f9;">
+                    <!-- Arabic Text -->
+                    <div class="mb-3 text-right" style="border-bottom: 1px solid #004d40; padding-bottom: 10px;">
+                        <h5 class="card-title text-success">عربی متن</h5>
+                        <p class="card-text" style="font-family: 'Amiri', serif; font-size: 1.2rem; color: #333;">{{ verse.arabic_text }}</p>
+                    </div>
+
+                    <!-- Urdu Translation -->
+                    <div class="mb-3 text-right">
+                        <h5 class="card-title text-primary">اردو ترجمہ</h5>
+                        <p class="card-text" style="font-size: 1.1rem; color: #444;">{{ verse.urdu_translation }}</p>
+                    </div>
+
+                    <!-- English Translation -->
+                    <div class="mb-3">
+                        <h5 class="card-title text-right text-info">انگریزی ترجمہ</h5>
+                        <p class="card-text" style="font-size: 1rem; color: #555;">{{ verse.english_translation }}</p>
+                    </div>
+
+                    <!-- Word by Word Translation (if available) -->
+                    {% if verse.word_by_word_translation %}
+                    <div>
+                        <h5 class="card-title text-danger text-right">لفظ بہ لفظ ترجمہ</h5>
+                        <p class="card-text" style="font-size: 0.95rem; color: #666;">{{ verse.word_by_word_translation }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

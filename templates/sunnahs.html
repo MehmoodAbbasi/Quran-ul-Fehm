@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Sunnah{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        {% for sunnah in sunnahs %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 verse-card">
+                <div class="card-body d-flex flex-column">
+                    <div class="text-right mb-auto">
+                        <h4 class="card-title text-primary"> : عربی عنوان </h4>
+                        <p class="card-text text-success">{{ sunnah.title_ar }}</p>
+                        <h4 class="card-title text-primary"> : اردو عنوان</h4>
+                        <p class="card-text text-warning">{{ sunnah.description_ur }}</p>
+                    </div>
+                    <div class="text-left">
+                        <h2 class="card-title">Description</h2>
+                        <p class="card-text ">{{ sunnah.description }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
