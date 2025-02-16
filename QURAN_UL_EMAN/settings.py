@@ -11,26 +11,29 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-djpwy1gy$ff!qwr60b^&gazj=e(kdf0nd5cv1gey#*_!lx=^(*'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# SECURITY WARNING: Turn off Debug mode in production!
+DEBUG = False
 
+# Allow only specific hosts
 ALLOWED_HOSTS = ["18.207.242.51", "sughaat.com", "www.sughaat.com"]
 
-
+# Allow trusted domains for CSRF protection
+CSRF_TRUSTED_ORIGINS = [
+    "http://sughaat.com",
+    "https://sughaat.com",
+    "http://www.sughaat.com",
+    "https://www.sughaat.com"
+]
 
 # Application definition
-
 INSTALLED_APPS = [
     'jazzmin',
     'django.contrib.admin',
@@ -59,7 +62,7 @@ ROOT_URLCONF = 'QURAN_UL_EMAN.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,7 +75,12 @@ TEMPLATES = [
     },
 ]
 
+# Use WSGI for Nginx + Gunicorn
 WSGI_APPLICATION = 'QURAN_UL_EMAN.wsgi.application'
+
+# ASGI for Channels (if needed)
+ASGI_APPLICATION = 'QURAN_UL_EMAN.asgi.application'
+
 # Channel layers configuration for real-time notifications
 CHANNEL_LAYERS = {
     'default': {
@@ -80,11 +88,7 @@ CHANNEL_LAYERS = {
     },
 }
 
-ASGI_APPLICATION = 'quran_app.asgi.application'
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+# Database Configuration (Using SQLite for now)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -92,62 +96,44 @@ DATABASES = {
     }
 }
 
-
 # Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-
 # Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Collect static files here
 
-STATIC_URL = 'static/'
+# Media files (user-uploaded content)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-
+# Jazzmin settings (Admin panel customization)
 JAZZMIN_SETTINGS = {
     "site_title": "My Site Admin",
     "site_header": "Admin Dashboard",
-    "site_logo": "images/logo.png",  # Optional: add your custom logo
+    "site_logo": "images/logo.png",
     "welcome_sign": "Welcome to My Admin Panel",
-    "search_model": ["auth.User", "myapp.MyModel"],  # Optional: restrict search models
-    "user_avatar": "profile_pics/",  # Optional: specify a directory for user avatars
+    "search_model": ["auth.User", "myapp.MyModel"],
+    "user_avatar": "profile_pics/",
     "topmenu_links": [
         {"name": "Home", "url": "/", "new_window": False},
         {"name": "Docs", "url": "https://docs.djangoproject.com/", "new_window": True},
     ],
-    "default_icon": "fa fa-home",  # Optional: FontAwesome icons for your admin links
+    "default_icon": "fa fa-home",
     "nav_sidebar": True,
-    "theme": "default",  # Or use 'slate', 'dark', or 'light' for other themes
+    "theme": "default",
 }
