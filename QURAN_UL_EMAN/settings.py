@@ -23,7 +23,8 @@ SECRET_KEY = 'django-insecure-djpwy1gy$ff!qwr60b^&gazj=e(kdf0nd5cv1gey#*_!lx=^(*
 DEBUG = False
 
 # Allow only specific hosts
-ALLOWED_HOSTS = ["18.207.242.51", "sughaat.com", "www.sughaat.com"]
+ALLOWED_HOSTS = ['54.89.208.135', 'sughaat.com', 'www.sughaat.com', 'localhost']
+
 
 # Allow trusted domains for CSRF protection
 CSRF_TRUSTED_ORIGINS = [
